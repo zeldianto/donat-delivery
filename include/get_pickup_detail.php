@@ -11,7 +11,7 @@ if ($koneksi->connect_error) {
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    $sql = "SELECT d.id AS delivery_id, d.delivery_date, d.pickup_date, d.qty, d.price, o.name, o.address, o.geolocation
+    $sql = "SELECT d.id AS delivery_id, d.delivery_date, d.pickup_date, d.qty, d.price, o.name, o.address, o.geolocation, o.note
             FROM delivery d 
             JOIN outlet o ON d.id_outlet = o.id 
             WHERE d.id = ?";
@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
     if ($stmt) {
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $stmt->bind_result($delivery_id, $delivery_date, $pickup_date, $qty, $price, $name, $address, $geolocation);
+        $stmt->bind_result($delivery_id, $delivery_date, $pickup_date, $qty, $price, $name, $address, $geolocation, $note);
 
         if ($stmt->fetch()) {
             echo json_encode([
@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
                 'delivery_date' => $delivery_date,
                 'pickup_date' => $pickup_date,
                 'geolocation' => $geolocation,
+                'note' => $note,
                 'name' => $name,
                 'address' => $address,
                 'qty' => $qty

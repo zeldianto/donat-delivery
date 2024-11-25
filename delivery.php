@@ -75,6 +75,11 @@
             <input type="number" id="qty" name="qty" autocomplete="off"
                 class="border border-gray-300 p-2 rounded-lg w-full" placeholder="">
         </div>
+        <div class="p-2">
+            <label for="note" class="text-sm text-gray-500">Catatan</label>
+            <input type="text" id="note" name="note" autocomplete="off"
+                class="border border-gray-300 p-2 rounded-lg w-full" placeholder="Catatan">
+        </div>
         <div class="p-2 ">
             <button type="submit" id="submitBtn"
                 class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-lg w-full">

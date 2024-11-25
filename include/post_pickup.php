@@ -5,6 +5,7 @@ header('Content-Type: application/json');
 if (isset($_POST['deliveryID'])) {
     // Data
     $id = (int) $_POST['deliveryID'];
+    $note = mysqli_real_escape_string($koneksi, $_POST['note']);
     $delivery_date = mysqli_real_escape_string($koneksi, $_POST['date']);
     $pickup_date = mysqli_real_escape_string($koneksi, $_POST['date']);
     $sold_qty = (int) $_POST['sold_qty'];
@@ -35,6 +36,13 @@ if (isset($_POST['deliveryID'])) {
 
                 if (!$insert_delivery) {
                     throw new Exception('Gagal menambah data delivery baru: ' . mysqli_error($koneksi));
+                }
+
+                $sql_update_outlet = "UPDATE outlet SET note = '$note' WHERE id = (SELECT id_outlet FROM delivery WHERE id = $id)";
+                $update_outlet = mysqli_query($koneksi, $sql_update_outlet);
+
+                if (!$update_outlet) {
+                    throw new Exception('Gagal mengupdate status outlet: ' . mysqli_error($koneksi));
                 }
             } else {
                 // Jika nonActive dicentang, update status is_active pada tabel outlet

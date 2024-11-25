@@ -5,6 +5,7 @@ header('Content-Type: application/json');
 if (isset($_POST['name']) && isset($_POST['date']) && isset($_POST['qty'])) {
     // Data Outlet
     $name = mysqli_real_escape_string($koneksi, $_POST['name']);
+    $note = mysqli_real_escape_string($koneksi, $_POST['note']);
     $address = isset($_POST['address']) ? mysqli_real_escape_string($koneksi, $_POST['address']) : '';
     $geolocation = isset($_POST['geolocation']) ? mysqli_real_escape_string($koneksi, $_POST['geolocation']) : '';
 
@@ -20,7 +21,7 @@ if (isset($_POST['name']) && isset($_POST['date']) && isset($_POST['qty'])) {
 
         try {
             // Insert data ke tabel outlet
-            $sql_outlet = "INSERT INTO outlet (name, address, geolocation, is_active) VALUES ('$name', '$address', '$geolocation', 1)";
+            $sql_outlet = "INSERT INTO outlet (name, address, geolocation, note, is_active) VALUES ('$name', '$address', '$geolocation', '$note', 1)";
             $simpan_outlet = mysqli_query($koneksi, $sql_outlet);
 
             if (!$simpan_outlet) {

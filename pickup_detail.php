@@ -59,6 +59,11 @@
     </div>
     <form id="pickupForm" class="mt-1">
         <div class="p-2">
+            <label for="note" class="text-sm text-gray-500">Catatan</label>
+            <input type="note" id="note" name="note" class="border border-gray-300 p-2 rounded-lg w-full"
+                placeholder="">
+        </div>
+        <div class="p-2">
             <label for="date" class="text-sm text-gray-500">Tanggal Penjemputan</label>
             <input type="date" id="date" name="date" class="border border-gray-300 p-2 rounded-lg w-full"
                 placeholder="">

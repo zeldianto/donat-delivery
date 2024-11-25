@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('address').textContent = data.address;
                     document.getElementById('qty').value = data.qty;
                     document.getElementById('nextQty').value = data.qty;
+                    document.getElementById('note').value = data.note;
                     document.getElementById('direction').addEventListener('click', function () {
                         window.open(data.geolocation, '_blank');
                     });
